@@ -1,0 +1,42 @@
+{
+  "name": "George di Giovanni",
+  "title": "Professor of Philosophy Emeritus, McGill University",
+  "url": "https://george.digiovanni.ca",
+  "description": "George di Giovanni — Professor of Philosophy Emeritus at McGill University. German Idealism, Hegel, Kant, phenomenology and philosophy of religion.",
+  "tags": [
+    "German Idealism",
+    "Phenomenology",
+    "Philosophy of Religion"
+  ],
+  "email": "george.di_giovanni@mcgill.ca",
+  "emailAlt": "georgedigiovanni@gmail.com",
+  "nav": [
+    {
+      "url": "/",
+      "label": "Home"
+    },
+    {
+      "url": "/books/",
+      "label": "Books"
+    },
+    {
+      "url": "/papers/",
+      "label": "Papers"
+    },
+    {
+      "url": "/notes/",
+      "label": "Notes on the Translation"
+    },
+    {
+      "url": "/cv/",
+      "label": "CV"
+    }
+  ],
+  "links": [
+    {
+      "label": "Friedrich Heinrich Jacobi — Stanford Encyclopedia of Philosophy",
+      "url": "https://plato.stanford.edu/entries/friedrich-jacobi/",
+      "note": "Archived original entry 2001, updated 2010; later editions with Paolo Livieri"
+    }
+  ]
+}

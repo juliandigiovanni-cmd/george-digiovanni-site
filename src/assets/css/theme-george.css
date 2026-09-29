@@ -1,0 +1,145 @@
+/* ---------------------------------------------------------------
+   theme-george.css — typefaces, palette, and the hero.
+   Everything site-specific lives here.
+   --------------------------------------------------------------- */
+
+:root {
+  /* Light only, always. See the note below the palette. */
+  color-scheme: light;
+
+  /* Type. Charter/Source Serif style stack, with the system serifs that
+     ship on macOS, Windows and Linux as the real fallbacks. */
+  --font-display: "Charter", "Iowan Old Style", "Palatino Linotype", Palatino,
+                  "Source Serif 4", "Source Serif Pro", Georgia, serif;
+  --font-body: "Charter", "Iowan Old Style", "Source Serif 4",
+               "Source Serif Pro", Georgia, "Times New Roman", serif;
+
+  --size-body: 1.0625rem;
+  --size-small: 0.9375rem;
+  --size-eyebrow: 0.75rem;
+  --size-h1: clamp(2.1rem, 1.5rem + 2.4vw, 3.1rem);
+  --size-h2: clamp(1.4rem, 1.2rem + 0.8vw, 1.7rem);
+  --size-h3: 1.15rem;
+
+  /* Warm off-white ground, ink brown text, one restrained accent. */
+  --paper: #faf7f2;
+  --paper-raised: #f3ede4;
+  --ink-strong: #241d17;
+  --ink: #3a3129;
+  --ink-muted: #6b5f53;
+  --ink-faint: #928477;
+  --rule: #e2d9cc;
+  --rule-strong: #cbbda9;
+  --accent: #7a3b2e;
+  --accent-hover: #5c2a20;
+
+  --measure: 68ch;
+  --measure-wide: 62rem;
+
+  --space-sm: 0.75rem;
+  --space-md: 1.35rem;
+  --space-lg: 2.25rem;
+  --space-xl: clamp(2.75rem, 2rem + 3vw, 4.25rem);
+}
+
+/* There is deliberately no dark palette and no `prefers-color-scheme` rule
+   anywhere in this stylesheet. A dark variant shipped once and George asked for
+   it to go: "can we throw more light on the subject? That black is lugubrious."
+   The page is the warm off-white above on every machine, whatever the visitor's
+   system is set to. Please don't helpfully add dark mode back. */
+
+/* --- the hero ----------------------------------------------------
+   One portrait of George beside his name and the opening description.
+   This was a triptych — Kant, George, Hegel — and George asked for the
+   two paintings to come off: "one is already too much."
+   ----------------------------------------------------------------- */
+
+.hero {
+  padding-block: var(--space-xl) var(--space-lg);
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  column-gap: clamp(1.5rem, 0.8rem + 2.4vw, 3rem);
+}
+
+/* The portrait George sent on 2026-09-16 is 900×1200, served at 720×960 so it
+   stays sharp on high-density screens. The panel is still capped small and never
+   asked to fill more than a third of the column. */
+.hero__portrait {
+  margin: 0;
+  width: clamp(150px, 22vw, 240px);
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border: 1px solid var(--rule-strong);
+  background: var(--paper-raised);
+  box-shadow: 0 1px 3px rgb(36 29 23 / 0.10), 0 8px 22px -12px rgb(36 29 23 / 0.22);
+}
+
+/* No filter. The old triptych warmed and darkened this photograph so it would
+   sit with two oil paintings; with the paintings gone that only put George in
+   shadow, which is the thing he asked us to fix. */
+.hero__portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero__name { margin: 0 0 0.25em; }
+
+.hero__title {
+  font-size: 1.0625rem;
+  color: var(--ink-muted);
+  margin: 0 0 var(--space-md);
+}
+
+.hero__welcome {
+  max-width: 62ch;
+  margin-top: var(--space-md);
+}
+
+/* Narrow screens: the portrait goes above the text rather than beside it. */
+@media (max-width: 38rem) {
+  .hero {
+    grid-template-columns: 1fr;
+    row-gap: var(--space-md);
+    justify-items: start;
+  }
+  .hero__portrait { width: min(58vw, 200px); }
+}
+
+/* --- links that carry a file -------------------------------------- */
+
+.filelink {
+  font-family: var(--font-body);
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule-strong);
+  padding-bottom: 1px;
+}
+.filelink:hover { border-bottom-color: currentColor; }
+.filelink::after {
+  content: " PDF";
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  color: var(--ink-faint);
+  vertical-align: 0.15em;
+}
+
+/* --- the homepage notes under the books --------------------------- */
+
+.home-notes { margin-top: var(--space-lg); }
+
+/* --- the video page ------------------------------------------------
+   George's 2020 presentation, self-hosted as a 720p H.264 MP4 so it
+   plays in every browser and lives on his own domain. See the README. */
+
+.video-frame {
+  display: block;
+  width: 100%;
+  max-width: var(--measure-wide);
+  height: auto;
+  aspect-ratio: 16 / 9;
+  background: var(--ink-strong);
+  border: 1px solid var(--rule-strong);
+  box-shadow: 0 1px 3px rgb(36 29 23 / 0.10), 0 8px 22px -12px rgb(36 29 23 / 0.22);
+}

@@ -1,0 +1,23 @@
+---
+layout: base.njk
+title: Notes on the Translation
+permalink: /notes/
+pageDescription: "Corrections to George di Giovanni's translation of Hegel's Science of Logic (Cambridge University Press, 2010)."
+---
+<div class="wrap page-header">
+  <h1>Notes on the Translation</h1>
+  <div class="prose">{{ notes.intro | safe }}</div>
+</div>
+
+<div class="wrap section" style="border-top:1px solid var(--rule)">
+  <ul class="pub-list">
+    {% for n in notes.items %}
+    <li>
+      <h2 class="pub__title">{{ n.n }}. {{ n.title }}</h2>
+      {% if n.venue %}<p class="pub__meta">{{ n.venue | safe }}</p>{% endif %}
+      <p class="pub__abstract">{{ n.summary }}</p>
+      <p class="pub__actions"><a class="filelink" href="/assets/pdf/{{ n.pdf }}">Read</a></p>
+    </li>
+    {% endfor %}
+  </ul>
+</div>

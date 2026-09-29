@@ -1,0 +1,11 @@
+---
+permalink: /robots.txt
+eleventyExcludeFromCollections: true
+---
+# Everything here is meant to be found. The only rule is a pointer to the
+# sitemap, which is generated at build time from the page list.
+
+User-agent: *
+Allow: /
+
+Sitemap: {{ site.url }}/sitemap.xml

@@ -1,0 +1,25 @@
+{
+  "intro": "Regarding the translation of Hegel’s <em>Greater Logic</em>, readers have kindly alerted me to a number of errors. Most are innocuous, but two are serious. I have documented all in three notes published in the <em>Owl of Minerva</em>.",
+  "items": [
+    {
+      "n": 1,
+      "title": "Corrections Regarding the Recent Translation of Hegel’s ‘Greater Logic’",
+      "pdf": "note-1-corrections.pdf",
+      "summary": "The first list of errors, two of them serious: at p. 386, ‘pure reflection’ should read ‘pure negativity’; at p. 723, a subordinate clause is attached to the wrong line."
+    },
+    {
+      "n": 2,
+      "title": "A Second Note Regarding the Recent Translation of Hegel’s ‘Greater Logic’",
+      "pdf": "note-2-second-note.pdf",
+      "venue": "<em>The Owl of Minerva</em> 47:1 (2015–16) 167–168.",
+      "summary": "Two typographical errors in Remark 1 on the calculus (pp. 235 and 241) that entered Hegel’s own text in the 1832 edition and have been reproduced without comment in every subsequent edition and English translation since."
+    },
+    {
+      "n": 3,
+      "title": "One More Note on the Translation of Hegel’s Science of Logic",
+      "pdf": "note-3-one-more-note.pdf",
+      "venue": "<em>The Owl of Minerva</em> 49:1–2 (2017–18).",
+      "summary": "An error at p. 705 in Hegel’s illustration from Gauss, with the history of the 1923 Lasson emendation that stood behind it; a correction at p. 74; and four further corrections provided by readers."
+    }
+  ]
+}

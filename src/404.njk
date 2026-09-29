@@ -1,0 +1,77 @@
+---
+layout: base.njk
+title: "Page not found"
+permalink: /404.html
+eleventyExcludeFromCollections: true
+---
+{#- GitHub Pages serves /404.html for any path it has no file for, and it ignores
+    .htaccess. So the redirects that deploy/htaccess used to do on Bluehost happen
+    here instead, in the browser: the script below looks the requested path up and
+    forwards it with location.replace, which keeps the dead URL out of the history.
+
+    The rules are copied from deploy/htaccess, in the same order and with the same
+    targets. If one changes there, change it here -- and the reverse, while Bluehost
+    is still serving the site. Two things differ from Apache, deliberately:
+
+    - The path is compared after decodeURIComponent, because browsers send the space
+      in "The DevilAnd..." as %20 and may send the apostrophe as %27. Apache's
+      Redirect also matches the decoded path, which is why those two lines are quoted
+      in the .htaccess.
+    - The Redirect lines are matched exactly rather than as prefixes. Apache would
+      also forward /Papers/PopularPhilosophy.pdf/anything, but no real link has that
+      shape, and here it falls through to the /Papers/ catch-all instead.
+
+    A search engine that does not run the script sees a 404, which is what should
+    happen to a URL that no longer exists. The links under the heading are the way
+    on for a reader with JavaScript off. -#}
+<script>
+(function () {
+  var path = location.pathname;
+  try { path = decodeURIComponent(path); } catch (e) { /* malformed escape: use it raw */ }
+
+  var exact = {
+    // Loose CV that sat at the old web root
+    "/CV.GdiGiovani.2021.pdf": "/assets/pdf/cv-george-di-giovanni.pdf",
+
+    // Papers George keeps -- old URL to new
+    "/Papers/1995_HumeJacobiCommonSense.pdf": "/assets/pdf/1997-hume-jacobi-common-sense.pdf",
+    "/Papers/2008_TheNewSpinozism.pdf": "/assets/pdf/2011-the-new-spinozism.pdf",
+    "/Papers/2012_FichtesTranscendentalArgument.pdf": "/assets/pdf/2016-fichtes-transcendental-argument.pdf",
+    "/Papers/2013_HegelsLinguisticTurn.pdf": "/assets/pdf/2017-hegels-linguistic-turn.pdf",
+    "/Papers/2013_TheKantianLegacy.pdf": "/assets/pdf/2014-the-kantian-legacy.pdf",
+    "/Papers/2016_HegelonReligion.pdf": "/assets/pdf/2016-hegel-on-religion.pdf",
+    "/Papers/2016_HowNecessaryisthePhenomenologyforHegel'sLogic.pdf": "/assets/pdf/2016-how-necessary-is-the-phenomenology.pdf",
+    "/Papers/2021_ChapterAbstractsofHegelandtheChallengeofSpinoza.pdf": "/assets/pdf/2021-hegel-challenge-of-spinoza-abstracts.pdf",
+    "/Papers/PopularPhilosophy.pdf": "/assets/pdf/2012-popular-philosophy.pdf",
+    "/Papers/SpinozisticFigurationsInEarlyGermanIdealism.pdf": "/assets/pdf/2004-spinozistic-figurations.pdf",
+
+    // Withdrawn papers -- to the listing, where the title still appears
+    "/Papers/1992_CryptoCatholicism-Hegel-in-dialogue-with-the-Enlightenment.pdf": "/papers/",
+    "/Papers/2000_KantAndHegelOnReligion.pdf": "/papers/",
+    "/Papers/2009_HowIntimateTrulyWasHegel.pdf": "/papers/",
+    "/Papers/2009_TheVocationOfHumankinf.pdf": "/papers/",
+    "/Papers/2013_The DevilAndTheBeautifulSoul.pdf": "/papers/",
+    "/Papers/2014_KantianVersusHegelianMyth.pdf": "/papers/",
+
+    // Interview dropped from the site at George's request, 2026-09-11
+    "/Papers/2016_InterviewonHegelwiththeIsraelimagazineDehak.pdf": "/papers/"
+  };
+
+  var to = null;
+  // Old research page, either capitalisation, with or without anything after it.
+  // /research/ itself is a real page (research-redirect.njk) and never gets here.
+  if (/^\/[Rr]esearch(\/.*)?$/.test(path)) to = "/papers/";
+  else if (exact.hasOwnProperty(path)) to = exact[path];
+  // Anything else that was ever under the old directory. Last, as in the .htaccess,
+  // so the specific lines above win.
+  else if (/^\/Papers\/.*$/.test(path)) to = "/papers/";
+
+  if (to) location.replace(to + location.search);
+})();
+</script>
+<div class="wrap page-header">
+  <h1>Page not found</h1>
+  <p>That address does not exist on this site. If you followed an old link to one of
+  George's papers, they are all listed on the <a href="/papers/">Papers</a> page.</p>
+  <p><a href="/">Home</a> · <a href="/papers/">Papers</a> · <a href="/books/">Books</a></p>
+</div>

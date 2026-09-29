@@ -1,0 +1,32 @@
+---
+layout: base.njk
+title: Books
+permalink: /books/
+pageDescription: "Monographs, translations and edited volumes by George di Giovanni — including Hegel and the Challenge of Spinoza and the Cambridge translation of Hegel's Science of Logic."
+---
+<div class="wrap page-header">
+  <h1>Books</h1>
+  <p>Monographs, translations and edited volumes.</p>
+</div>
+
+<div class="wrap section" style="border-top:1px solid var(--rule)">
+  <ul class="pub-list">
+    {% for b in books %}
+    <li id="{{ b.title | slugify }}">
+      <h2 class="pub__title" style="font-size:var(--size-h2)">{{ b.title }}</h2>
+      {% if b.subtitle %}<p class="pub__meta" style="font-style:italic;margin-bottom:.3em">{{ b.subtitle }}</p>{% endif %}
+      <p class="pub__meta">
+        {{ b.role }}{% if b.publisher %} · {{ b.publisher }}{% endif %}{% if b.series %} · {{ b.series }}{% endif %} · {{ b.year }}{% if b.pages %} · {{ b.pages }} pp.{% endif %}
+      </p>
+      {% if b.abstract %}<div class="pub__abstract">{{ b.abstract | safe }}</div>{% endif %}
+      {% if b.note %}<p class="pub__meta">{{ b.note | safe }}</p>{% endif %}
+      {% if b.url or b.abstractsPdf %}
+      <p class="pub__actions">
+        {% if b.url %}<a href="{{ b.url }}">At the publisher</a>{% endif %}
+        {% if b.abstractsPdf %}<a class="filelink" href="/assets/pdf/{{ b.abstractsPdf }}">Chapter abstracts</a>{% endif %}
+      </p>
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+</div>

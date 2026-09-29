@@ -1,0 +1,38 @@
+---
+layout: base.njk
+title: CV
+permalink: /cv/
+pageDescription: "Curriculum vitae of George di Giovanni, Professor of Philosophy Emeritus, McGill University."
+---
+<div class="wrap page-header">
+  <h1>Curriculum Vitae</h1>
+  <p>{{ site.title }}. An abbreviated CV is available as a
+  <a class="filelink" href="/assets/pdf/cv-george-di-giovanni.pdf">download</a>.</p>
+</div>
+
+<div class="wrap section" style="border-top:1px solid var(--rule)">
+  <h2 class="section-title">Education</h2>
+  <ul class="ref-list">
+    {% for e in education %}
+    <li><strong style="color:var(--ink-strong)">{{ e.degree }}</strong> ({{ e.year }}){% if e.institution %}, {{ e.institution }}{% endif %}{% if e.note %}<br><span style="color:var(--ink-muted)">{{ e.note | safe }}</span>{% endif %}</li>
+    {% endfor %}
+  </ul>
+</div>
+
+<div class="wrap section">
+  <h2 class="section-title">Monographs, translations and edited volumes</h2>
+  <ul class="ref-list">
+    {% for b in books %}
+    <li>{% if b.url %}<a href="{{ b.url }}">{{ b.title }}</a>{% else %}{{ b.title }}{% endif %}{% if b.subtitle %}: {{ b.subtitle }}{% endif %}. {{ b.role }}{% if b.publisher %} ({{ b.publisher }}, {{ b.year }}){% else %} ({{ b.year }}){% endif %}{% if b.pages %} {{ b.pages }} pp.{% endif %}</li>
+    {% endfor %}
+  </ul>
+</div>
+
+<div class="wrap section">
+  <h2 class="section-title">Essays and critical studies — a selection</h2>
+  <ul class="ref-list">
+    {% for e in essays %}
+    <li>{{ e.text }}{% if e.urls %} {% for u in e.urls %}<a href="{{ u }}">↗</a>{% endfor %}{% endif %}</li>
+    {% endfor %}
+  </ul>
+</div>

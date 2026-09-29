@@ -1,0 +1,61 @@
+# .htaccess for george.digiovanni.ca
+#
+# BLUEHOST ONLY. Kept for as long as Bluehost still serves the site, and as the
+# record of what the redirects are. The site now deploys to GitHub Pages through
+# .github/workflows/deploy.yml, and Pages ignores .htaccess entirely: the same
+# redirects are in src/404.njk, and HTTPS is the repo's "Enforce HTTPS" setting.
+# Change a rule in both places until the Bluehost account is gone.
+#
+# NOT produced by the Eleventy build. Upload it to the document root by hand and
+# leave it alone on every redeploy — an extract that overwrites it silently undoes
+# every redirect below, and nothing looks broken until someone follows an old link.
+#
+# The /Papers/ redirects exist because the WordPress site served PDFs from a plain
+# directory at the web root. That directory was deleted at the 2026-09 cutover; these
+# lines keep old links and footnote citations working.
+#
+# The six papers redirected to /papers/ are withdrawn under George's Routledge
+# contract. Their titles remain on the site, the files do not. Do not restore them
+# without checking docs/after-launch.md.
+
+Options -Indexes
+DirectoryIndex index.html
+AddType video/mp4 .mp4
+
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+
+# Old research page. WordPress routed case-insensitively; Apache does not, and the
+# old homepage linked the capitalised spelling.
+# RedirectMatch rather than Redirect: a prefix Redirect sent /research/ to /papers//.
+RedirectMatch 301 ^/[Rr]esearch(/.*)?$ /papers/
+
+# Loose CV that sat at the old web root
+Redirect 301 /CV.GdiGiovani.2021.pdf /assets/pdf/cv-george-di-giovanni.pdf
+
+# Papers George keeps — old URL to new
+Redirect 301 /Papers/1995_HumeJacobiCommonSense.pdf /assets/pdf/1997-hume-jacobi-common-sense.pdf
+Redirect 301 /Papers/2008_TheNewSpinozism.pdf /assets/pdf/2011-the-new-spinozism.pdf
+Redirect 301 /Papers/2012_FichtesTranscendentalArgument.pdf /assets/pdf/2016-fichtes-transcendental-argument.pdf
+Redirect 301 /Papers/2013_HegelsLinguisticTurn.pdf /assets/pdf/2017-hegels-linguistic-turn.pdf
+Redirect 301 /Papers/2013_TheKantianLegacy.pdf /assets/pdf/2014-the-kantian-legacy.pdf
+Redirect 301 /Papers/2016_HegelonReligion.pdf /assets/pdf/2016-hegel-on-religion.pdf
+Redirect 301 "/Papers/2016_HowNecessaryisthePhenomenologyforHegel'sLogic.pdf" /assets/pdf/2016-how-necessary-is-the-phenomenology.pdf
+Redirect 301 /Papers/2021_ChapterAbstractsofHegelandtheChallengeofSpinoza.pdf /assets/pdf/2021-hegel-challenge-of-spinoza-abstracts.pdf
+Redirect 301 /Papers/PopularPhilosophy.pdf /assets/pdf/2012-popular-philosophy.pdf
+Redirect 301 /Papers/SpinozisticFigurationsInEarlyGermanIdealism.pdf /assets/pdf/2004-spinozistic-figurations.pdf
+
+# Withdrawn papers — to the listing, where the title still appears
+Redirect 301 /Papers/1992_CryptoCatholicism-Hegel-in-dialogue-with-the-Enlightenment.pdf /papers/
+Redirect 301 /Papers/2000_KantAndHegelOnReligion.pdf /papers/
+Redirect 301 /Papers/2009_HowIntimateTrulyWasHegel.pdf /papers/
+Redirect 301 /Papers/2009_TheVocationOfHumankinf.pdf /papers/
+Redirect 301 "/Papers/2013_The DevilAndTheBeautifulSoul.pdf" /papers/
+Redirect 301 /Papers/2014_KantianVersusHegelianMyth.pdf /papers/
+
+# Interview dropped from the site at George's request, 2026-09-11
+Redirect 301 /Papers/2016_InterviewonHegelwiththeIsraelimagazineDehak.pdf /papers/
+
+# Anything else that was ever under the old directory
+RedirectMatch 301 ^/Papers/.*$ /papers/

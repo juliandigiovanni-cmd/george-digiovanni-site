@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% if title %}{{ title }} — {{ site.name }}{% else %}{{ site.name }}{% endif %}</title>
+<meta name="description" content="{{ pageDescription or site.description }}">
+<link rel="canonical" href="{{ site.url }}{{ page.url }}">
+<link rel="stylesheet" href="/assets/css/base.css">
+<link rel="stylesheet" href="/assets/css/theme-george.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="wrap masthead__inner">
+    <a class="masthead__name" href="/">{{ site.name }}</a>
+    <nav class="nav" aria-label="Main">
+      {% for item in site.nav %}
+      <a href="{{ item.url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.label }}</a>
+      {% endfor %}
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+{{ content | safe }}
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div>
+        <h2>Contact</h2>
+        <p>
+          <a href="mailto:{{ site.email }}">{{ site.email }}</a><br>
+          <a href="mailto:{{ site.emailAlt }}">{{ site.emailAlt }}</a>
+        </p>
+      </div>
+      <div>
+        <h2>Elsewhere</h2>
+        <ul style="list-style:none;margin:0;padding:0;line-height:1.5">
+          {% for l in site.links %}
+          <li style="margin-bottom:.6em"><a href="{{ l.url }}">{{ l.label }}</a>{% if l.note %}<br><span style="color:var(--ink-faint)">{{ l.note }}</span>{% endif %}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    <p class="footer__colophon">© {{ "" | year }} {{ site.name }}</p>
+  </div>
+</footer>
+</body>
+</html>

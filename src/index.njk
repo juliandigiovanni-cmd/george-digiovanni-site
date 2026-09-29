@@ -1,0 +1,73 @@
+---
+layout: base.njk
+---
+<section class="wrap hero">
+  <figure class="hero__portrait">
+    <img src="/assets/img/george-portrait.jpg" width="720" height="960"
+         alt="George di Giovanni.">
+  </figure>
+
+  <div>
+    <h1 class="hero__name">{{ site.name }}</h1>
+    <p class="hero__title">{{ site.title }}</p>
+
+    <ul class="tag-row">
+      {% for t in site.tags %}<li class="tag">{{ t }}</li>{% endfor %}
+    </ul>
+
+    <div class="hero__welcome prose">
+      <p>George di Giovanni is Professor of Philosophy Emeritus at McGill University
+      (Montréal), where he taught for over fifty years. His mentors are Emil Fackenheim
+      and H. S. Harris. Classical German Philosophy and the Philosophy of Religion are
+      his areas of special interest, but he has also lectured extensively on
+      Kierkegaard and French phenomenology.</p>
+      <p>He authored <em>Freedom and Religion in Kant and his Immediate Successors</em>
+      (2005), <em>Hegel and the Challenge of Spinoza</em> (2021), and numerous other
+      studies on figures of the later German Enlightenment and early Romanticism. He is
+      the editor and translator of numerous texts of Jacobi, Kant, and Hegel, including
+      Hegel’s <em>Greater Logic</em> (2010).</p>
+    </div>
+  </div>
+</section>
+
+<section class="wrap section">
+  <h2 class="section-title">Most recent books</h2>
+  <ul class="book-grid">
+    {% for b in books %}{% if b.featured %}
+    <li>
+      <a class="book-card" href="/books/#{{ b.title | slugify }}">
+        {% if b.cover %}
+        <span class="book-card__cover book-card__cover--image">
+          <img src="/assets/img/{{ b.cover }}" alt="Cover of {{ b.title }}" loading="lazy">
+        </span>
+        {% else %}
+        <span class="book-card__cover">
+          <span class="book-card__cover-role">{{ b.role }}</span>
+          <span class="book-card__cover-body">
+            <span class="book-card__cover-title">{{ b.title }}</span>
+            <span class="book-card__cover-rule"></span>
+            {% if b.subtitle %}<span class="book-card__cover-sub">{{ b.subtitle }}</span>{% endif %}
+          </span>
+          <span class="book-card__cover-pub">{{ b.publisher }}<br>{{ b.year }}</span>
+        </span>
+        {% endif %}
+      </a>
+    </li>
+    {% endif %}{% endfor %}
+  </ul>
+  <div class="prose home-notes">
+    <p>Regarding the translation of Hegel’s <em>Greater Logic</em>, readers have kindly
+    alerted me to a number of errors. Most are innocuous, but two are serious. I have
+    documented all in three notes published in the <em>Owl of Minerva</em>; see
+    <a href="/notes/">here</a>.</p>
+    <p>For some reflections on
+    <a href="/assets/pdf/2016-how-necessary-is-the-phenomenology.pdf">Hegel’s Logic</a> and
+    <a href="/assets/pdf/2016-hegel-on-religion.pdf">Hegel’s idea of Religion</a>, go to the
+    indicated links.</p>
+    <p>Video of a presentation on the occasion of the 250th anniversary of Hegel’s birth,
+    August 2020, can be found <a href="/video/">here</a>.</p>
+    <p>An abbreviated CV can be found
+    <a href="/assets/pdf/cv-george-di-giovanni.pdf">here</a>.</p>
+  </div>
+  <p style="margin-top:var(--space-lg)"><a href="/books/">All books, translations and edited volumes →</a></p>
+</section>
